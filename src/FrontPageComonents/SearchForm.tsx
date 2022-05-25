@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Button, Box, Group, createStyles, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import LoadingButton from './LoadingButton';

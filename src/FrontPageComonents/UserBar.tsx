@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Text, Group } from '@mantine/core';
-import SettingsButton from './SettingsButton';
+import SettingsButton from '../ResultsPageComponents/SettingsButton/SettingsButton';
 
 export default function UserBar(): JSX.Element {
   return (

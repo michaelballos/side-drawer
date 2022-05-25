@@ -1,9 +1,8 @@
 import React from 'react';
-import './SideDrawer.scss';
+import '../../Styles/SideDrawer.scss';
 import { Accordion } from '@mantine/core';
 
 export default function Accordian() {
-
   return (
      <Accordion>
       <Accordion.Item label="About">

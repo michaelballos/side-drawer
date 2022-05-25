@@ -1,13 +1,13 @@
 import React from 'react';
-import SideDrawer from './SideDrawer';
-import Front from './Front/Front'
-import './global.css';
+import ResultsPage from './ResultsPage';
+import FrontPage from './FrontPage'
+import './Styles/global.css';
 
 function App() {
   return (
     <div className="App">
-      <SideDrawer />
-      <Front />
+      <ResultsPage />
+      <FrontPage />
     </div>
   );
 }

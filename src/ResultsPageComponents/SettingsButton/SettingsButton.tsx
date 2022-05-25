@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import { 
-  Button, 
   Group,
   Menu,
   Divider,
   Text,
   Avatar 
 } from '@mantine/core';
-import SettingsIcon from '../SettingsIcon';
 
 export default function SettingsButton() {
-  const [opened, setOpened] = useState(false);
   return (
     <Group 
       style={{
@@ -23,7 +19,7 @@ export default function SettingsButton() {
         <Group>
           <Avatar
             radius="xl"
-            src={require('../particleSpace.png')}
+            src={require('../../particleSpace.png')}
           />
 
           <div>

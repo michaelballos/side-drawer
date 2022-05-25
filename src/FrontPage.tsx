@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Drawer, Group, Stack } from '@mantine/core';
-import UserBar from './UserBar';
-import TabNavigation from './TabNavigation';
+import { Drawer, Stack } from '@mantine/core';
+import UserBar from './FrontPageComonents/UserBar';
+import TabNavigation from './FrontPageComonents/TabNavigation';
 
-export default function Front(): JSX.Element {
+export default function FrontPage(): JSX.Element {
   const [opened, setOpened] = useState(false);
   useEffect(() => {
     setOpened(true);

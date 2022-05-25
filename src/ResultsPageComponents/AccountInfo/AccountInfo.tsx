@@ -1,8 +1,8 @@
 import React from 'react';
-import './SideDrawer.scss';
+import '../../Styles/SideDrawer.scss';
 import { Stack, Button } from '@mantine/core';
-import ProfilePicture from './ProfilePicture';
-import Email from './Email';
+import ProfilePicture from '../ProfilePicture/ProfilePicture';
+import Email from '../Email/Email';
 
 export default function AccountInfo() {
   return (

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import AccountInfo from './AccountInfo';
-import Accordian from './Accordian';
-import './SideDrawer.scss';
-import * as ReactDOM from 'react-dom';
+import AccountInfo from './ResultsPageComponents/AccountInfo/AccountInfo';
+import Accordian from './ResultsPageComponents/Accordian/Accordian';
+import './Styles/SideDrawer.scss';
 import { Drawer, Stack } from '@mantine/core';
-import BackArrowButton from './BackArrowButton';
+import BackArrowButton from './ResultsPageComponents/BackArrowButton/BackArrowButton';
 
-export default function SideDrawer() {
+export default function ResultsPage() {
   const [opened, setOpened] = useState(false);
   useEffect(() => {
     setOpened(true);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Drawer, Group, Stack } from '@mantine/core';
 import UserBar from './UserBar';
 import TabNavigation from './TabNavigation';
@@ -11,8 +11,16 @@ export default function Front(): JSX.Element {
 
   return (
     <Drawer
-      title='Particle Space'
-      position='left'
+      title={
+        <span
+          style={{
+            paddingLeft: '10px',
+          }}
+        >
+          Particle Space
+        </span>
+      }
+      position="left"
       opened={opened}
       onClose={() => setOpened(false)}
     >
@@ -20,6 +28,6 @@ export default function Front(): JSX.Element {
         <UserBar />
         <TabNavigation />
       </Stack>
-    </Drawer>    
-  )
+    </Drawer>
+  );
 }

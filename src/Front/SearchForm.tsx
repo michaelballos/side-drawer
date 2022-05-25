@@ -48,7 +48,7 @@ const useStyles = createStyles(
  */
 export default function SearchForm(): JSX.Element {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState('');
+  const [value] = useState('');
   const { classes } = useStyles({
     floating: value.trim().length !== 0 || focused,
   });
@@ -58,28 +58,6 @@ export default function SearchForm(): JSX.Element {
       city: '',
       state: '',
       zipcode: '',
-    },
-    validate: {
-      address: (value: string) => {
-        if (value.trim().length === 0) {
-          return 'Address is required';
-        } 
-      },
-      city: (value: string) => {
-        if (value.trim().length === 0) {
-          return 'City is required';
-        } 
-      },
-      state: (value: string) => {
-        if (value.trim().length === 0) {
-          return 'State is required';
-        } 
-      },
-      zipcode: (value: string) => {
-        if (value.trim().length === 0) {
-          return 'Zipcode is required';
-        } form.setFieldValue('zipcode', value);
-      },
     },
   });
    const [loadingState, setLoadingState] = useState(false);

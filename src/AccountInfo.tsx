@@ -1,7 +1,6 @@
 import React from 'react';
 import './SideDrawer.scss';
-import { Group, Stack, Button } from '@mantine/core';
-import SettingsButton from './SettingsButton';
+import { Stack, Button } from '@mantine/core';
 import ProfilePicture from './ProfilePicture';
 import Email from './Email';
 

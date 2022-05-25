@@ -18,7 +18,7 @@ export default function Front(): JSX.Element {
     >
       <Stack>
         <UserBar />
-          <TabNavigation />
+        <TabNavigation />
       </Stack>
     </Drawer>    
   )

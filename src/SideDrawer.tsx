@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import TopBar from './TopBar';
 import AccountInfo from './AccountInfo';
 import Accordian from './Accordian';
 import './SideDrawer.scss';
 import * as ReactDOM from 'react-dom';
-import { Drawer, Stack, Group } from '@mantine/core';
-import SettingsButton from './SettingsButton';
+import { Drawer, Stack } from '@mantine/core';
+import BackArrowButton from './BackArrowButton';
 
 export default function SideDrawer() {
   const [opened, setOpened] = useState(false);
@@ -18,7 +17,7 @@ export default function SideDrawer() {
         position="right"
         opened={opened}
         onClose={() => setOpened(false)}
-        title={<SettingsButton />}
+        title={<BackArrowButton />}
       >
         <Stack>        
           <AccountInfo />

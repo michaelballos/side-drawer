@@ -9,8 +9,6 @@ import {
 
 export default function SearchPropertyTab(): JSX.Element {
   return (
-    <Stack>
       <SearchForm />      
-    </Stack>
   );
 }

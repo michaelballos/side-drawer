@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, Group } from '@mantine/core';
-import SettingsButton from '../SettingsButton';
+import SettingsButton from './SettingsButton';
 
 export default function UserBar(): JSX.Element {
   return (
@@ -25,7 +25,6 @@ export default function UserBar(): JSX.Element {
           User
         </Text>
       </Group>
-      
       <SettingsButton />
     </Group>
   ); 

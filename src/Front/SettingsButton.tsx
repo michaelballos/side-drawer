@@ -12,7 +12,12 @@ import SettingsIcon from '../SettingsIcon';
 export default function SettingsButton() {
   const [opened, setOpened] = useState(false);
   return (
-    <Group position="center">
+    <Group 
+      style={{
+        paddingRight: '10px',
+      }}
+      position="center"
+    >
     <Menu size={300} placement="end" transition="pop">
       <Menu.Item>
         <Group>
@@ -22,9 +27,9 @@ export default function SettingsButton() {
           />
 
           <div>
-            <Text weight={500}>Nancy Eggshacker</Text>
+            <Text weight={500}>Grace</Text>
             <Text size="xs" color="dimmed">
-              neggshaker@mantine.dev
+              grace@particlespace.com
             </Text>
           </div>
         </Group>

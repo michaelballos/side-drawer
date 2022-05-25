@@ -22,7 +22,7 @@ export default function UserBar(): JSX.Element {
           />
         </Image>
         <Text>
-          User
+          Grace
         </Text>
       </Group>
       <SettingsButton />

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Stack, Group, createStyles, TextInput } from '@mantine/core';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Button, Box, Group, createStyles, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import LoadingButton from './LoadingButton';
 
@@ -7,12 +7,18 @@ const useStyles = createStyles(
   (theme, { floating }: { floating: boolean }) => ({
     root: {
       position: 'relative',
+      padding: '5px 0px',
+    },
+
+    box: {
+      height: '80px',
+      padding: '0px 10px',
     },
 
     label: {
       position: 'absolute',
       zIndex: 2,
-      top: 7,
+      top: 12,
       left: theme.spacing.sm,
       pointerEvents: 'none',
       color: floating
@@ -62,26 +68,29 @@ export default function SearchForm(): JSX.Element {
   });
    const [loadingState, setLoadingState] = useState(false);
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = useCallback(async (values: any) => {
       await setLoadingState(true);
       await form.reset();
       await setTimeout(() => {
         setLoadingState(false);
         console.log('values:', values);
       }, 2000);
-  };
+  }, [form]);
+
+  const setFocus = useCallback(() => {
+    setFocused(true);
+  }, []);
 
   return (
-    <Stack>
       <form onSubmit={form.onSubmit(handleSubmit)}>
+        <Box className={classes.box}>
       <TextInput
         label="Address"
         placeholder="Enter the address"
         required
         classNames={classes}
         {...form.getInputProps('address')}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={setFocus}
         mt="md"
         autoComplete="nope"
       />
@@ -91,8 +100,7 @@ export default function SearchForm(): JSX.Element {
         required
         classNames={classes}
         {...form.getInputProps('city')}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={setFocus}
         mt="md"
         autoComplete="nope"
       />
@@ -102,8 +110,7 @@ export default function SearchForm(): JSX.Element {
         required
         classNames={classes}
         {...form.getInputProps('state')}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={setFocus}
         mt="md"
         autoComplete="nope"
       />
@@ -113,8 +120,7 @@ export default function SearchForm(): JSX.Element {
         required
         classNames={classes}
         {...form.getInputProps('zipcode')}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={setFocus}
         mt="md"
         autoComplete="nope"
       />
@@ -128,7 +134,7 @@ export default function SearchForm(): JSX.Element {
         size="sm"
       />
       </Group>
+      </Box>
       </form>
-    </Stack>
   );
 }

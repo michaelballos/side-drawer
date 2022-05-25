@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Text, Group } from '@mantine/core';
 import SettingsButton from '../SettingsButton';
 
-export default function UserBar() {
+export default function UserBar(): JSX.Element {
   return (
     <Group
       style={{

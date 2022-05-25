@@ -1,12 +1,16 @@
 import React from 'react';
 import FloatingLabelInput from './FloatingLabelInput';
-import SearchInputs from './SearchInputs';
+import SearchForm from './SearchForm';
+import {
+  Button,
+  Stack,
+  Group
+} from '@mantine/core'
 
-export default function SearchPropertyTab() {
+export default function SearchPropertyTab(): JSX.Element {
   return (
-    <div>
-      <SearchInputs />      
-
-    </div>
+    <Stack>
+      <SearchForm />      
+    </Stack>
   );
 }

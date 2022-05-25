@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { 
+   useState 
+} from 'react';
 import { 
   TextInput, 
   createStyles 
@@ -7,13 +9,14 @@ import {
 const useStyles = createStyles((theme, { floating }: { floating: boolean }) => ({
   root: {
     position: 'relative',
-    padding: '10px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
   },
 
   label: {
     position: 'absolute',
     zIndex: 2,
-    top: 17,
+    top: 7,
     left: theme.spacing.xl,
     pointerEvents: 'none',
     color: floating
@@ -50,7 +53,7 @@ export default function FloatingLabel({
       label: string,
       placeholder: string,
       required: boolean | undefined,
-    }) {
+    }): JSX.Element {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
   const { classes } = useStyles({ floating: value.trim().length !== 0 || focused });

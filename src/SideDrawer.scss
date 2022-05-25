@@ -1,0 +1,19 @@
+$primary-color: darkblue;
+$background-color: #BADA55;
+
+// Chrome applies an 8px margin by default (gross).
+  
+.arrowDown {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.settingsButton {
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

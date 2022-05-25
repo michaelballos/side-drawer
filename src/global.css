@@ -1,0 +1,17 @@
+body,
+html,
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  background-color: rgba(0, 0, 0, 0.087);
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100vh;
+}
+

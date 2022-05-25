@@ -37,12 +37,6 @@ export default function SettingsButton() {
 
       <Divider />
 
-      <Menu.Item>Liked posts</Menu.Item>
-      <Menu.Item>Saved posts</Menu.Item>
-      <Menu.Item>
-        Your comments
-      </Menu.Item>
-
       <Menu.Label>Settings</Menu.Label>
       <Menu.Item>Account settings</Menu.Item>
       <Menu.Item>Change account</Menu.Item>
@@ -51,7 +45,6 @@ export default function SettingsButton() {
       <Divider />
 
       <Menu.Label>Danger zone</Menu.Label>
-      <Menu.Item>Pause subscription</Menu.Item>
       <Menu.Item color="red">
         Delete account
       </Menu.Item>

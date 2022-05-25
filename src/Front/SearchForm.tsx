@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FloatingLabelInput from './FloatingLabelInput';
 import { Button, Stack, Group, createStyles, TextInput } from '@mantine/core';
 import LoadingButton from './LoadingButton';
 
@@ -52,6 +51,9 @@ const useStyles = createStyles((theme, {
   },
 }));
 
+/**
+ * styles and states need to b fixed 
+ */
 export default function SearchForm(): JSX.Element {
   const [focusedAddress, setFocusedAddress] = useState(false);
   const [focusedCity, setFocusedCity] = useState(false);
@@ -74,7 +76,6 @@ export default function SearchForm(): JSX.Element {
     setLoadingState(false);
     }, 2000);
   }
-
 
   return (
     <Stack>

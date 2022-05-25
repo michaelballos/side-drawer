@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { TextInput, createStyles } from '@mantine/core';
+import { 
+  TextInput, 
+  createStyles 
+} from '@mantine/core';
 
 const useStyles = createStyles((theme, { floating }: { floating: boolean }) => ({
   root: {
     position: 'relative',
+    padding: '10px',
   },
 
   label: {
     position: 'absolute',
     zIndex: 2,
-    top: 7,
-    left: theme.spacing.sm,
+    top: 17,
+    left: theme.spacing.xl,
     pointerEvents: 'none',
     color: floating
       ? theme.colorScheme === 'dark'
@@ -38,16 +42,24 @@ const useStyles = createStyles((theme, { floating }: { floating: boolean }) => (
   },
 }));
 
-export function FloatingLabelInput() {
+export default function FloatingLabel({ 
+  label, 
+  placeholder, 
+  required, 
+  }: {
+      label: string,
+      placeholder: string,
+      required: boolean | undefined,
+    }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
   const { classes } = useStyles({ floating: value.trim().length !== 0 || focused });
 
   return (
     <TextInput
-      label="Floating label"
-      placeholder="OMG, it also has a placeholder"
-      required
+      label={label}
+      placeholder={placeholder}
+      {...{required}} 
       classNames={classes}
       value={value}
       onChange={(event) => setValue(event.currentTarget.value)}

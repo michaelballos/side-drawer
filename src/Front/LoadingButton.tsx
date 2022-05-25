@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Button } from '@mantine/core';
 
 /**
@@ -10,12 +9,10 @@ export default function LoadingButton({
   label,
   size,
   loading,
-  onClick
 }: {
   label: string;
   size: 'sm' | 'md' | 'lg';
   loading: boolean;
-  onClick: () => void;
 }): JSX.Element {
 
   return (
@@ -25,7 +22,6 @@ export default function LoadingButton({
         {...{loading}} 
         loaderPosition="right"
         size={size}
-        onClick={onClick}
       >
         {label}
       </Button>

@@ -1,147 +1,156 @@
 import React, { useState } from 'react';
 import { Button, Stack, Group, createStyles, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import LoadingButton from './LoadingButton';
 
-const useStyles = createStyles((theme, {
-  focusedAddress, 
-  focusedCity,
-  focusedState,
-  focusedZipcode,
-}: { 
-  focusedAddress: boolean 
-  focusedCity: boolean 
-  focusedState: boolean 
-  focusedZipcode: boolean 
-}) => ({
-  root: {
-    position: 'relative',
-    paddingLeft: '10px',
-    paddingRight: '10px',
-  },
-
-  label: {
-    position: 'absolute',
-    zIndex: 2,
-    top: 7,
-    left: theme.spacing.xl,
-    pointerEvents: 'none',
-    color: focusedAddress || focusedCity || focusedState || focusedZipcode
-      ? theme.colorScheme === 'dark'
-        ? theme.white
-        : theme.black
-      : theme.colorScheme === 'dark'
-      ? theme.colors.dark[3]
-      : theme.colors.gray[5],
-    transition: 'transform 150ms ease, color 150ms ease, font-size 150ms ease',
-    transform: focusedAddress || focusedCity || focusedState || focusedZipcode ? `translate(-${theme.spacing.sm}px, -28px)` : 'none',
-    fontSize: focusedAddress || focusedCity || focusedState || focusedZipcode ? theme.fontSizes.xs : theme.fontSizes.sm,
-    fontWeight: focusedAddress || focusedCity || focusedState || focusedZipcode ? 500 : 400,
-  },
-
-  required: {
-    transition: 'opacity 150ms ease',
-    opacity: focusedAddress || focusedCity || focusedState || focusedZipcode ? 1 : 0,
-  },
-
-  input: {
-    '&::placeholder': {
-      transition: 'color 150ms ease',
-      color: !focusedAddress || focusedCity || focusedState || focusedZipcode ? 'transparent' : undefined,
+const useStyles = createStyles(
+  (theme, { floating }: { floating: boolean }) => ({
+    root: {
+      position: 'relative',
     },
-  },
-}));
+
+    label: {
+      position: 'absolute',
+      zIndex: 2,
+      top: 7,
+      left: theme.spacing.sm,
+      pointerEvents: 'none',
+      color: floating
+        ? theme.colorScheme === 'dark'
+          ? theme.white
+          : theme.black
+        : theme.colorScheme === 'dark'
+        ? theme.colors.dark[3]
+        : theme.colors.gray[5],
+      transition:
+        'transform 150ms ease, color 150ms ease, font-size 150ms ease',
+      transform: floating ? `translate(-${theme.spacing.sm}px, -28px)` : 'none',
+      fontSize: floating ? theme.fontSizes.xs : theme.fontSizes.sm,
+      fontWeight: floating ? 500 : 400,
+    },
+
+    required: {
+      transition: 'opacity 150ms ease',
+      opacity: floating ? 1 : 0,
+    },
+
+    input: {
+      '&::placeholder': {
+        transition: 'color 150ms ease',
+        color: !floating ? 'transparent' : undefined,
+      },
+    },
+  })
+);
 
 /**
- * styles and states need to b fixed 
+ * styles and states need to b fixed
  */
 export default function SearchForm(): JSX.Element {
-  const [focusedAddress, setFocusedAddress] = useState(false);
-  const [focusedCity, setFocusedCity] = useState(false);
-  const [focusedState, setFocusedState] = useState(false);
-  const [focusedZipcode, setFocusedZipcode] = useState(false);
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [loadingState, setLoadingState] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [value, setValue] = useState('');
   const { classes } = useStyles({
-    focusedAddress: focusedAddress,
-    focusedCity: focusedCity,
-    focusedState: focusedState,
-    focusedZipcode: focusedZipcode,  
-    });
-  const onClick = async ()  => {
-    await setLoadingState(true);
-    await setTimeout(() => {
-    setLoadingState(false);
-    }, 2000);
-  }
+    floating: value.trim().length !== 0 || focused,
+  });
+  const form = useForm({
+    initialValues: {
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+    },
+    validate: {
+      address: (value: string) => {
+        if (value.trim().length === 0) {
+          return 'Address is required';
+        } 
+      },
+      city: (value: string) => {
+        if (value.trim().length === 0) {
+          return 'City is required';
+        } 
+      },
+      state: (value: string) => {
+        if (value.trim().length === 0) {
+          return 'State is required';
+        } 
+      },
+      zipcode: (value: string) => {
+        if (value.trim().length === 0) {
+          return 'Zipcode is required';
+        } form.setFieldValue('zipcode', value);
+      },
+    },
+  });
+   const [loadingState, setLoadingState] = useState(false);
+
+  const handleSubmit = async (values: any) => {
+      await setLoadingState(true);
+      await form.reset();
+      await setTimeout(() => {
+        setLoadingState(false);
+        console.log('values:', values);
+      }, 2000);
+  };
 
   return (
     <Stack>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
       <TextInput
-        label='Address'
-        placeholder='Enter the address'
-        required 
+        label="Address"
+        placeholder="Enter the address"
+        required
         classNames={classes}
-        value={address}
-        onChange={(event) => setAddress(event.currentTarget.value)}
-        onFocus={() => setFocusedAddress(true)}
-        onBlur={() => setFocusedAddress(false)}
+        {...form.getInputProps('address')}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         mt="md"
         autoComplete="nope"
       />
       <TextInput
-        label='City'
-        placeholder='Enter the City'
-        required 
+        label="City"
+        placeholder="Enter the City"
+        required
         classNames={classes}
-        value={city}
-        onChange={(event) => setCity(event.currentTarget.value)}
-        onFocus={() => setFocusedCity(true)}
-        onBlur={() => setFocusedCity(false)}
+        {...form.getInputProps('city')}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         mt="md"
         autoComplete="nope"
       />
       <TextInput
-        label='State'
-        placeholder='Enter the state'
-        required 
+        label="State"
+        placeholder="Enter the state"
+        required
         classNames={classes}
-        value={state}
-        onChange={(event) => setState(event.currentTarget.value)}
-        onFocus={() => setFocusedState(true)}
-        onBlur={() => setFocusedState(false)}
+        {...form.getInputProps('state')}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         mt="md"
         autoComplete="nope"
       />
       <TextInput
-        label='Zipcode'
-        placeholder='Enter the zipcode'
-        required 
+        label="Zipcode"
+        placeholder="Enter the zipcode"
+        required
         classNames={classes}
-        value={zipcode}
-        onChange={(event) => setZipcode(event.currentTarget.value)}
-        onFocus={() => setFocusedZipcode(true)}
-        onBlur={() => setFocusedZipcode(false)}
+        {...form.getInputProps('zipcode')}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         mt="md"
         autoComplete="nope"
       />
-      <Group position='center'>
-        <Button 
-          variant="subtle" 
-          type="submit"
-          size='sm'
-        >
+      <Group position="center">
+        <Button variant="subtle" type="submit" size="sm">
           &#8592; Go Back
         </Button>
-      <LoadingButton 
-        onClick={onClick}
-        loading={loadingState}
-        size='md'
+      <LoadingButton
         label="Search"
+        loading={loadingState} 
+        size="sm"
       />
       </Group>
+      </form>
     </Stack>
   );
 }

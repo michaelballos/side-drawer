@@ -1,0 +1,11 @@
+.hidden {
+    top: 100%;
+    position: relative;
+    transition: all .3s ease-out;
+    background: #428bca;
+    height: 100%;
+}
+
+.box:hover>.hidden {
+    top: 0;
+}

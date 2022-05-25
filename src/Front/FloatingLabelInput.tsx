@@ -48,28 +48,32 @@ const useStyles = createStyles((theme, { floating }: { floating: boolean }) => (
 export default function FloatingLabel({ 
   label, 
   placeholder, 
+  value,
+  setValue,
   required, 
   }: {
       label: string,
       placeholder: string,
+      value: string,
+      setValue: (value: string) => void,
       required: boolean | undefined,
     }): JSX.Element {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState('');
   const { classes } = useStyles({ floating: value.trim().length !== 0 || focused });
-
   return (
-    <TextInput
-      label={label}
-      placeholder={placeholder}
-      {...{required}} 
-      classNames={classes}
-      value={value}
-      onChange={(event) => setValue(event.currentTarget.value)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-      mt="md"
-      autoComplete="nope"
-    />
+    <>
+      <TextInput
+        label={label}
+        placeholder={placeholder}
+        {...{required}} 
+        classNames={classes}
+        value={value}
+        onChange={(event) => setValue(event.currentTarget.value)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        mt="md"
+        autoComplete="nope"
+      />
+    </>
   );
 }

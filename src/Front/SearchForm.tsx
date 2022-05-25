@@ -81,7 +81,7 @@ export default function SearchForm(): JSX.Element {
     <Stack>
       <TextInput
         label='Address'
-        placeholder='Enter your address'
+        placeholder='Enter the address'
         required 
         classNames={classes}
         value={address}
@@ -93,7 +93,7 @@ export default function SearchForm(): JSX.Element {
       />
       <TextInput
         label='City'
-        placeholder='Enter your City'
+        placeholder='Enter the City'
         required 
         classNames={classes}
         value={city}
@@ -105,7 +105,7 @@ export default function SearchForm(): JSX.Element {
       />
       <TextInput
         label='State'
-        placeholder='Enter your state'
+        placeholder='Enter the state'
         required 
         classNames={classes}
         value={state}
@@ -117,7 +117,7 @@ export default function SearchForm(): JSX.Element {
       />
       <TextInput
         label='Zipcode'
-        placeholder='Enter your zipcode'
+        placeholder='Enter the zipcode'
         required 
         classNames={classes}
         value={zipcode}

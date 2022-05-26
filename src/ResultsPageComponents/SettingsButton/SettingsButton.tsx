@@ -23,9 +23,9 @@ export default function SettingsButton() {
           />
 
           <div>
-            <Text weight={500}>Grace</Text>
+            <Text weight={500}>Particle Space</Text>
             <Text size="xs" color="dimmed">
-              grace@particlespace.com
+              support@particlespace.com
             </Text>
           </div>
         </Group>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Button, Box, Group, createStyles, TextInput } from '@mantine/core';
+import { Text, Box, Group, createStyles, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import LoadingButton from './LoadingButton';
 
@@ -72,7 +72,6 @@ export default function SearchForm(): JSX.Element {
   const handleSubmit = useCallback(
     async (values: any) => {
       const { address, city, state, zipcode } = values;
-
       const getPropertyData = async () => {
         const response = await fetch(
           `https://api.particlespace.com/api/v1/property/search?address=${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
@@ -91,14 +90,14 @@ export default function SearchForm(): JSX.Element {
           console.log('DATA:', data);
           return data;
         } catch (error) {
-          throw new Error(error + 'Something went wrong');
+          throw new Error('Error fetching data');
         }
       };
-      await setLoadingState(true);
-      await form.reset();
-      await console.log('values:', values);
-      await getPropertyData();
-      await setLoadingState(false);
+      setLoadingState(true);
+      form.reset();
+      console.log('values:', values);
+      getPropertyData();
+      setLoadingState(false);
     },
     [form]
   );
@@ -110,6 +109,9 @@ export default function SearchForm(): JSX.Element {
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Box className={classes.box}>
+        <Text align="center" size="md">
+          Search for a property
+        </Text>
         <TextInput
           label="Address"
           placeholder="Enter the address"
@@ -151,9 +153,6 @@ export default function SearchForm(): JSX.Element {
           autoComplete="nope"
         />
         <Group position="center">
-          <Button variant="subtle" type="submit" size="sm">
-            &#8592; Go Back
-          </Button>
           <LoadingButton label="Search" loading={loadingState} size="sm" />
         </Group>
       </Box>

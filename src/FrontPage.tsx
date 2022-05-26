@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Drawer, Stack } from '@mantine/core';
+import { Drawer, Text, Group, Stack, Avatar } from '@mantine/core';
 import UserBar from './FrontPageComonents/UserBar';
 import TabNavigation from './FrontPageComonents/TabNavigation';
 
@@ -12,20 +12,31 @@ export default function FrontPage(): JSX.Element {
   return (
     <Drawer
       title={
-        <span
+        <Group
           style={{
-            paddingLeft: '10px',
+            width: '270px',
+            paddingTop: '10px',
+            paddingLeft: '55px',
           }}
+          position="center"
         >
-          Particle Space
-        </span>
-      }
+        <Avatar
+         radius="xl" 
+         size="sm" 
+         src={require("./particleSpace.png")}
+        />
+        </Group>
+        }
       position="left"
       opened={opened}
       onClose={() => setOpened(false)}
     >
       <Stack>
-        <UserBar />
+        <Text 
+          align='center'
+        >
+          Particle Space
+        </Text>
         <TabNavigation />
       </Stack>
     </Drawer>

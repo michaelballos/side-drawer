@@ -4,7 +4,7 @@ import { Text } from '@mantine/core';
 export default function Email() {
   return (
     <Text>
-      grace@particlespace.com
+      support@particlespace.com
     </Text>
   )
 }

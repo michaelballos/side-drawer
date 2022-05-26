@@ -8,8 +8,6 @@ export default function TabNavigation(): JSX.Element {
       <Tabs.Tab label='Search Property'>
         <SearchPropertyTab />
       </Tabs.Tab>
-      <Tabs.Tab label='Detect Emails'>
-      </Tabs.Tab>
     </Tabs>
   );
 }

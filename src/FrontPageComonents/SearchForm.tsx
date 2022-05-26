@@ -67,87 +67,96 @@ export default function SearchForm(): JSX.Element {
       zipcode: '',
     },
   });
-   const [loadingState, setLoadingState] = useState(false);
+  const [loadingState, setLoadingState] = useState(false);
 
- 
-  const handleSubmit = useCallback(async (values: any) => {
+  const handleSubmit = useCallback(
+    async (values: any) => {
       const { address, city, state, zipcode } = values;
+
       const getPropertyData = async () => {
-        const response = await fetch(`https://api.particlespace.com/api/v1/property/search?address=${address}&city=${city}&state=${state}&zipcode=${zipcode}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': 'Bearer ' + BEARER_TOKEN // replace with your token
-          },
-        });
-        return response.json();
+        const response = await fetch(
+          `https://api.particlespace.com/api/v1/property/search?address=${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
+          {
+            method: 'GET',
+            headers: {
+              // replace with your token
+              Authorization:
+                'Bearer ' +
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImp0aSI6Ijk1MzM4MjQwNSJ9.eyJpc3MiOiJodHRwczpcL1wvZGFzaGJvYXJkLnBhcnRpY2xlc3BhY2UuY29tIiwiYXVkIjoiaHR0cHM6XC9cL2xvY2FsaG9zdCIsImp0aSI6Ijk1MzM4MjQwNSIsImlhdCI6MTY1MzU2NTA2NywibmJmIjoxNjUzNTY1MDc3LCJleHAiOjE2NTM2NTE0Njd9.zBp_GWbiKsx3Lhn4XeHI5e65uhLGIv0MUR5M7ZyT0U70MiNYMV6GrgzMhd-0jXIbCrEZk619MPZ2V5Wud01PIw',
+            },
+          }
+        );
+        try {
+          const data = await response.json();
+          console.log('DATA:', data);
+          return data;
+        } catch (error) {
+          throw new Error(error + 'Something went wrong');
+        }
       };
       await setLoadingState(true);
       await form.reset();
       await console.log('values:', values);
-      await getPropertyData().then(data => console.log('data:', data));
+      await getPropertyData();
       await setLoadingState(false);
-      console.log(process.env.BEARER_TOKEN);
-  }, [form]);
+    },
+    [form]
+  );
 
   const setFocus = useCallback(() => {
     setFocused(true);
   }, []);
 
   return (
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Box className={classes.box}>
-      <TextInput
-        label="Address"
-        placeholder="Enter the address"
-        required
-        classNames={classes}
-        {...form.getInputProps('address')}
-        onFocus={setFocus}
-        mt="md"
-        autoComplete="nope"
-      />
-      <TextInput
-        label="City"
-        placeholder="Enter the City"
-        required
-        classNames={classes}
-        {...form.getInputProps('city')}
-        onFocus={setFocus}
-        mt="md"
-        autoComplete="nope"
-      />
-      <TextInput
-        label="State"
-        placeholder="Enter the state"
-        required
-        classNames={classes}
-        {...form.getInputProps('state')}
-        onFocus={setFocus}
-        mt="md"
-        autoComplete="nope"
-      />
-      <TextInput
-        label="Zipcode"
-        placeholder="Enter the zipcode"
-        required
-        classNames={classes}
-        {...form.getInputProps('zipcode')}
-        onFocus={setFocus}
-        mt="md"
-        autoComplete="nope"
-      />
-      <Group position="center">
-        <Button variant="subtle" type="submit" size="sm">
-          &#8592; Go Back
-        </Button>
-      <LoadingButton
-        label="Search"
-        loading={loadingState} 
-        size="sm"
-      />
-      </Group>
+    <form onSubmit={form.onSubmit(handleSubmit)}>
+      <Box className={classes.box}>
+        <TextInput
+          label="Address"
+          placeholder="Enter the address"
+          required
+          classNames={classes}
+          {...form.getInputProps('address')}
+          onFocus={setFocus}
+          mt="md"
+          autoComplete="nope"
+        />
+        <TextInput
+          label="City"
+          placeholder="Enter the City"
+          required
+          classNames={classes}
+          {...form.getInputProps('city')}
+          onFocus={setFocus}
+          mt="md"
+          autoComplete="nope"
+        />
+        <TextInput
+          label="State"
+          placeholder="Enter the state"
+          required
+          classNames={classes}
+          {...form.getInputProps('state')}
+          onFocus={setFocus}
+          mt="md"
+          autoComplete="nope"
+        />
+        <TextInput
+          label="Zipcode"
+          placeholder="Enter the zipcode"
+          required
+          classNames={classes}
+          {...form.getInputProps('zipcode')}
+          onFocus={setFocus}
+          mt="md"
+          autoComplete="nope"
+        />
+        <Group position="center">
+          <Button variant="subtle" type="submit" size="sm">
+            &#8592; Go Back
+          </Button>
+          <LoadingButton label="Search" loading={loadingState} size="sm" />
+        </Group>
       </Box>
-      </form>
+    </form>
   );
 }
-

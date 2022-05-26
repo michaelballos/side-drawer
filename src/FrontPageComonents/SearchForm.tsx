@@ -58,6 +58,7 @@ export default function SearchForm(): JSX.Element {
   const { classes } = useStyles({
     floating: value.trim().length !== 0 || focused,
   });
+
   const form = useForm({
     initialValues: {
       address: '',
@@ -68,13 +69,24 @@ export default function SearchForm(): JSX.Element {
   });
    const [loadingState, setLoadingState] = useState(false);
 
+ 
   const handleSubmit = useCallback(async (values: any) => {
+      const { address, city, state, zipcode } = values;
+      const getPropertyData = async () => {
+        const response = await fetch(`https://api.particlespace.com/api/v1/property/search?address=${address}&city=${city}&state=${state}&zipcode=${zipcode}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Bearer ' + BEARER_TOKEN // replace with your token
+          },
+        });
+        return response.json();
+      };
       await setLoadingState(true);
       await form.reset();
-      await setTimeout(() => {
-        setLoadingState(false);
-        console.log('values:', values);
-      }, 2000);
+      await console.log('values:', values);
+      await getPropertyData().then(data => console.log('data:', data));
+      await setLoadingState(false);
+      console.log(process.env.BEARER_TOKEN);
   }, [form]);
 
   const setFocus = useCallback(() => {
@@ -138,3 +150,4 @@ export default function SearchForm(): JSX.Element {
       </form>
   );
 }
+

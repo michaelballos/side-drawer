@@ -20,7 +20,7 @@ export default function FrontPage(): JSX.Element {
           Particle Space
         </span>
       }
-      position="right"
+      position="left"
       opened={opened}
       onClose={() => setOpened(false)}
     >

@@ -7,12 +7,13 @@ export default function LoginForm() {
     <Stack>
       <Text
         size="md"
-        weight={200}
+        weight={300}
         style={{
           display: 'flex',
           justifyContent: 'center',
         }}
       >
+        (login should be in extension dropdown)
         Hi! Login with your Particle Space Account.
       </Text>
       <TextInput label="Email" placeholder="Enter your email" id="email" />
